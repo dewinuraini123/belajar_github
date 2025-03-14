@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 1 JAVASCRIPT</title>
+</head>
+<body>
+    <h2>Menghitung Luas Persegi Panjang, Bujur Sangkar, dan Segitiga</h2>
+  
+  <script>
+    // Fungsi untuk menghitung luas persegi panjang
+    // Rumus: luas = panjang * lebar
+    function hitungLuasPersegiPanjang(panjang, lebar) {
+      return panjang * lebar;
+    }
+
+    // Fungsi untuk menghitung luas bujur sangkar
+    // Rumus: luas = sisi * sisi
+    function hitungLuasBujurSangkar(sisi) {
+      return sisi * sisi;
+    }
+
+    // Fungsi untuk menghitung luas segitiga
+    // Rumus: luas = 0.5 * alas * tinggi
+    function hitungLuasSegitiga(alas, tinggi) {
+      return 0.5 * alas * tinggi;
+    }
+
+    // Nilai parameter/argumen yang dapat diubah sesuai kebutuhan
+    let panjang = 20; // Panjang persegi panjang
+    let lebar = 10;    // Lebar persegi panjang
+    let sisi = 7;     // Sisi bujur sangkar
+    let alas = 8;     // Alas segitiga
+    let tinggi = 6;   // Tinggi segitiga
+
+    let luasPersegiPanjang = hitungLuasPersegiPanjang(panjang, lebar); //rumus luas persegi panjang (panjang*lebar)
+    let luasBujurSangkar = hitungLuasBujurSangkar(sisi); //rumus luas bujur sangkar (sisi*sisi)
+    let luasSegitiga = hitungLuasSegitiga(alas, tinggi); //rumus luas segitiga (alas*tinggi)
+
+    // Informasi
+    document.write("<h4>Diketahui: </h4>");
+    document.write("<p>Panjang: 20<p>");
+    document.write("<p>Lebar: 10<p>");
+    document.write("<p>Sisi: 7<p>");
+    document.write("<p>Alas: 8<p>");
+    document.write("<p>Tinggi: 6<p>");
+    document.write("<hr>");
+    // Menampilkan hasil perhitungan di halaman web menggunakan document.write
+    document.write("<h4>Hasil Perhitungan Luas:</h4>");
+    document.write("<p>Luas Persegi Panjang: " + luasPersegiPanjang + "</p>");
+    document.write("<p>Luas Bujur Sangkar: " + luasBujurSangkar + "</p>");
+    document.write("<p>Luas Segitiga: " + luasSegitiga + "</p>");
+
+  </script>
+</body>
+</html>
