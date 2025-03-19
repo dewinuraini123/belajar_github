@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #000000;
+        }
+        .container {
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 50%;
+        }
+        .btn {
+            padding: 5px 10px;
+            background-color: #00ac28;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-danger {
+            background-color: #ff0019;
+        }
+        .produk-list {
+            margin-top: 20px;
+        }
+        .produk-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manajemen Produk Toko</h1>
+
+        <!-- Form Tambah Produk -->
+        <div class="form-group">
+            <label for="nama">Nama Produk:</label>
+            <input type="text" id="nama" placeholder="Masukkan nama produk">
+        </div>
+        <div class="form-group">
+            <label for="harga">Harga:</label>
+            <input type="number" id="harga" placeholder="Masukkan harga">
+        </div>
+        <div class="form-group">
+            <label for="stok">Stok:</label>
+            <input type="number" id="stok" placeholder="Masukkan stok">
+        </div>
+        <button class="btn" onclick="tambahProduk()">Tambah Produk</button>
+
+        <!-- Daftar Produk -->
+        <div class="produk-list" id="produk-list">
+            <h2>Daftar Produk</h2>
+            <!-- Daftar produk akan ditampilkan di sini -->
+        </div>
+    </div>
+
+    <script>
+        // Array untuk menyimpan daftar produk
+        let produkToko = [
+            { id: 1, nama: "Laptop", harga: 7000000, stok: 5 },
+            { id: 2, nama: "Mouse", harga: 200000, stok: 10 },
+            { id: 3, nama: "Keyboard", harga: 350000, stok: 7 }
+        ];
+
+        // Fungsi untuk menambahkan produk baru
+        function tambahProduk() {
+            const nama = document.getElementById('nama').value;
+            const harga = parseInt(document.getElementById('harga').value);
+            const stok = parseInt(document.getElementById('stok').value);
+
+            if (nama && harga && stok) {
+                let idBaru = produkToko.length > 0 ? produkToko[produkToko.length - 1].id + 1 : 1;
+                let produkBaru = { id: idBaru, nama, harga, stok };
+                produkToko.push(produkBaru);
+                tampilkanProduk();
+                alert(`Produk '${nama}' berhasil ditambahkan.`);
+            } else {
+                alert("Harap isi semua field!");
+            }
+        };
+
+        // Fungsi untuk menghapus produk
+        function hapusProduk(id) {
+            let index = produkToko.findIndex(produk => produk.id === id);
+            if (index !== -1) {
+                let produkDihapus = produkToko.splice(index, 1);
+                tampilkanProduk();
+                alert(`Produk '${produkDihapus[0].nama}' berhasil dihapus.`);
+            } else {
+                alert("Produk dengan ID tersebut tidak ditemukan.");
+            }
+        };
+
+        // Fungsi untuk menampilkan daftar produk
+        function tampilkanProduk() {
+            const produkList = document.getElementById('produk-list');
+            produkList.innerHTML = '<h2>Daftar Produk</h2>';
+
+            produkToko.forEach(produk => {
+                const produkItem = document.createElement('div');
+                produkItem.className = 'produk-item';
+                produkItem.innerHTML = `
+                    <p><strong>ID:</strong> ${produk.id}</p>
+                    <p><strong>Nama:</strong> ${produk.nama}</p>
+                    <p><strong>Harga:</strong> Rp${produk.harga.toLocaleString()}</p>
+                    <p><strong>Stok:</strong> ${produk.stok}</p>
+                    <button class="btn btn-danger" onclick="hapusProduk(${produk.id})">Hapus</button>
+                `;
+                produkList.appendChild(produkItem);
+            });
+        };
+
+        // Tampilkan produk saat halaman dimuat
+        tampilkanProduk();
+    </script>
+</body>
+</html>
